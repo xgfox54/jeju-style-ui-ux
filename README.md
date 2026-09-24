@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./Jeju_UIUX.png" alt="Jeju UI/UX 디자인 가이드 표지" width="100%">
+</p>
+
+
 # Jeju Style UI·UX 디자인 가이드
 
 제주특별자치도 업무에 적용할 수 있도록 제작된 공통 디자인 시스템 가이드. **디자인 토큰 · 공통 컴포넌트 · 동작 · 접근성 규칙 · 검사기 · AI 작업 지침**을 담는다. 파일·패키지 이름은 `Jejustyle_UIUX`다.
