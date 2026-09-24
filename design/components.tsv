@@ -1,0 +1,62 @@
+component	class	profile	priority	status	react
+work-shell	.jeju-shell .jeju-gnb .jeju-lnb .jeju-main	work	P0	ready	jeju-shell
+utility-bar	.jeju-utility-bar	both	P1	ready	jeju-shell
+page-head	.jeju-page-head	work	P0	ready	jeju-page-head
+breadcrumb	.jeju-breadcrumb	both	P1	ready	breadcrumb
+button	.jeju-btn	both	P0	ready	button
+icon	.jeju-icon	both	P1	ready	jeju-icons
+card	.jeju-card	both	P0	ready	card
+stat	.jeju-stat-grid .jeju-stat	work	P0	ready	jeju-stat
+table	.jeju-table-wrap .jeju-table	both	P0	ready	table
+table-sort	.jeju-table__sort	work	P0	ready	jeju-data-table
+table-select	.jeju-bulkbar	work	P0	ready	jeju-data-table checkbox
+table-toolbar	.jeju-table-toolbar .jeju-pagesize	work	P1	ready	jeju-data-table native-select
+field	.jeju-field	both	P0	ready	field input label textarea native-select
+form-system	.jeju-form .jeju-form-section .jeju-form-grid .jeju-fieldset .jeju-form-actions	both	P0	ready	field
+error-summary	.jeju-error-summary	both	P0	ready	jeju-error-summary
+checkbox-radio	.jeju-choice .jeju-choice-group .jeju-choice--card	both	P0	ready	checkbox radio-group
+switch	.jeju-switch	both	P1	ready	switch
+chip	.jeju-chip .jeju-chip-set .jeju-chip__remove	both	P1	ready	chip
+date-input	.jeju-date-range .jeju-date-presets	both	P1	ready	jeju-date-picker calendar
+file-upload	.jeju-upload	both	P1	ready	jeju-file-upload
+search	.jeju-search	work	P0	ready	jeju-search
+badge	.jeju-badge	both	P0	ready	badge
+tag	.jeju-tag	both	P1	ready	badge
+alert	.jeju-alert	both	P0	ready	alert
+accordion	.jeju-accordion	both	P0	ready	accordion
+tooltip	.jeju-tooltip	both	P1	ready	tooltip
+menu	.jeju-menu-wrap .jeju-menu	both	P1	ready	dropdown-menu
+tabs	.jeju-tabs .jeju-tablist .jeju-tab .jeju-tabpanel	both	P0	ready	tabs
+progress	.jeju-progress	both	P1	ready	progress
+steps	.jeju-steps	both	P1	ready	jeju-steps
+wizard	.jeju-wizard	both	P1	ready	jeju-wizard
+pagination	.jeju-pagination .jeju-pagination__gap	both	P1	ready	pagination
+empty-state	.jeju-empty	both	P0	ready	empty
+modal	.jeju-modal	both	P0	ready	dialog alert-dialog
+toast	.jeju-toast-region .jeju-toast	both	P1	ready	sonner
+spinner	.jeju-spinner	both	P1	ready	spinner
+visually-hidden	.jeju-visually-hidden	both	P1	ready	-
+footer	.jeju-footer	work	P1	ready	-
+masthead	.jeju-masthead	public	P0	ready	jeju-public-shell
+public-header	.jeju-public-header	public	P0	ready	jeju-public-shell
+public-main	.jeju-public-main	public	P0	ready	jeju-public-shell
+public-hero	.jeju-hero	public	P1	ready	jeju-public-shell
+public-card	.jeju-public-card	public	P1	ready	jeju-public-shell
+identifier	.jeju-identifier	public	P0	ready	jeju-public-shell
+public-footer	.jeju-public-footer	public	P0	ready	jeju-public-shell
+skip-link-brand	.jeju-skip-link .jeju-brand	both	P1	ready	jeju-common
+select	-	both	P1	ready	select
+popover	-	both	P1	ready	popover
+sheet	-	both	P1	ready	sheet
+separator	-	both	P1	ready	separator
+skeleton	-	both	P1	ready	skeleton
+toggle	-	both	P1	ready	toggle
+service-search	.jeju-service-search .jeju-service-list .jeju-service-item	public	P1	ready	jeju-service-search
+eligibility-check	.jeju-checklist .jeju-checklist__item .jeju-checklist__result	public	P1	ready	jeju-eligibility-check
+doc-list	.jeju-doc-list .jeju-doc	public	P1	ready	jeju-doc-list
+contact	.jeju-contact .jeju-contact__list	public	P1	ready	jeju-contact
+related-links	.jeju-related	public	P1	ready	jeju-related-links
+async-state	.jeju-state .jeju-state--error .jeju-async .jeju-skeleton	both	P0	ready	jeju-async-state skeleton spinner
+side-panel	.jeju-modal--side .jeju-detail-list	both	P1	ready	jeju-detail-panel sheet
+table-link	.jeju-table__link	work	P1	ready	jeju-data-table
+print	.jeju-print-only .jeju-print-header .jeju-no-print	both	P1	ready	-

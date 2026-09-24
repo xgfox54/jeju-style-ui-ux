@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "title": "여러 줄 입력",
+  "description": "최소 110px, 입력 상태는 input과 같다.",
+  "files": [
+    {
+      "path": "registry/jeju/ui/textarea.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Textarea({ className, ...props }: React.ComponentProps<\"textarea\">) {\n  return (\n    <textarea\n      data-slot=\"textarea\"\n      className={cn(\n        \"flex field-sizing-content min-h-[110px] w-full resize-y rounded-lg border border-input bg-card px-2.75 py-2 text-(length:--jeju-control-font) text-foreground transition-colors outline-none placeholder:text-muted-foreground not-disabled:not-read-only:hover:border-(--jeju-text-faint) read-only:border-border read-only:bg-(--jeju-readonly-bg) focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) disabled:cursor-not-allowed disabled:border-(--jeju-disabled-border) disabled:bg-(--jeju-disabled-bg) disabled:text-(--jeju-disabled-text) aria-invalid:border-destructive\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Textarea }\n"
+    }
+  ]
+}

@@ -1,0 +1,1204 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "jeju",
+  "homepage": "README.md",
+  "items": [
+    {
+      "name": "jeju-tokens",
+      "type": "registry:file",
+      "title": "제주 디자인 토큰(정본 사본)",
+      "description": "design/jeju-tokens.css를 그대로 복사한다. 값의 유일한 원천이며 check_design.py --gate가 정본과 대조한다. CSS 첫 부분에서 @import로 불러온다.",
+      "files": [
+        {
+          "path": "design/jeju-tokens.css",
+          "type": "registry:file",
+          "target": "~/styles/jeju-tokens.css"
+        }
+      ]
+    },
+    {
+      "name": "jeju-fonts",
+      "type": "registry:file",
+      "title": "Pretendard GOV 자체 호스팅 선언",
+      "description": "public/fonts/jeju-fonts.css에 @font-face를 넣는다. 글꼴 파일은 기관 승인 후 public/fonts/에 둔다(design/fonts/README.md).",
+      "files": [
+        {
+          "path": "design/fonts/jeju-fonts.css",
+          "type": "registry:file",
+          "target": "~/public/fonts/jeju-fonts.css"
+        }
+      ]
+    },
+    {
+      "name": "jeju-style",
+      "type": "registry:style",
+      "title": "제주 스타일 — 한 번에 설치",
+      "description": "토큰 · 테마 · 제주 아이콘 · P0 UI 컴포넌트를 한 번에 설치한다. 달력과 블록은 필요할 때 추가한다.",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui",
+        "sonner@^2"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@jeju/jeju-tokens",
+        "@jeju/jeju-theme",
+        "@jeju/jeju-icons",
+        "@jeju/button",
+        "@jeju/badge",
+        "@jeju/card",
+        "@jeju/input",
+        "@jeju/label",
+        "@jeju/textarea",
+        "@jeju/native-select",
+        "@jeju/select",
+        "@jeju/checkbox",
+        "@jeju/radio-group",
+        "@jeju/switch",
+        "@jeju/chip",
+        "@jeju/toggle",
+        "@jeju/dialog",
+        "@jeju/alert-dialog",
+        "@jeju/sheet",
+        "@jeju/tabs",
+        "@jeju/alert",
+        "@jeju/breadcrumb",
+        "@jeju/pagination",
+        "@jeju/table",
+        "@jeju/skeleton",
+        "@jeju/spinner",
+        "@jeju/accordion",
+        "@jeju/dropdown-menu",
+        "@jeju/tooltip",
+        "@jeju/popover",
+        "@jeju/separator",
+        "@jeju/progress",
+        "@jeju/sonner",
+        "@jeju/field",
+        "@jeju/empty"
+      ]
+    },
+    {
+      "name": "jeju-theme",
+      "type": "registry:theme",
+      "title": "제주 테마 — shadcn 변수를 --jeju-* 토큰으로 연결",
+      "description": "--primary, --background, --radius 등 shadcn 변수를 모두 var(--jeju-*)로 돌린다. hex 값과 다크 팔레트는 없다.",
+      "dependencies": [
+        "shadcn",
+        "tw-animate-css"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-tokens"
+      ],
+      "cssVars": {
+        "theme": {
+          "font-sans": "var(--jeju-font)",
+          "font-heading": "var(--jeju-font)",
+          "font-mono": "var(--jeju-font-mono)",
+          "radius-sm": "var(--jeju-radius-sm)",
+          "radius-md": "var(--jeju-radius-sm)",
+          "radius-lg": "var(--jeju-radius)",
+          "radius-xl": "var(--jeju-radius-lg)",
+          "radius-2xl": "var(--jeju-radius-lg)",
+          "radius-4xl": "var(--jeju-radius-pill)"
+        },
+        "light": {
+          "background": "var(--jeju-bg)",
+          "foreground": "var(--jeju-text)",
+          "card": "var(--jeju-surface)",
+          "card-foreground": "var(--jeju-text)",
+          "popover": "var(--jeju-surface)",
+          "popover-foreground": "var(--jeju-text)",
+          "primary": "var(--jeju-primary)",
+          "primary-foreground": "var(--jeju-on-fill)",
+          "secondary": "var(--jeju-surface-inset)",
+          "secondary-foreground": "var(--jeju-text)",
+          "muted": "var(--jeju-control-bg)",
+          "muted-foreground": "var(--jeju-text-muted)",
+          "accent": "var(--jeju-control-bg)",
+          "accent-foreground": "var(--jeju-text-strong)",
+          "destructive": "var(--jeju-danger)",
+          "destructive-foreground": "var(--jeju-on-fill)",
+          "border": "var(--jeju-border)",
+          "input": "var(--jeju-border-strong)",
+          "ring": "var(--jeju-primary)",
+          "radius": "var(--jeju-radius)",
+          "chart-1": "var(--jeju-primary)",
+          "chart-2": "var(--jeju-secondary-strong)",
+          "chart-3": "var(--jeju-accent-strong)",
+          "chart-4": "var(--jeju-blue-deep)",
+          "chart-5": "var(--jeju-text-subtle)",
+          "sidebar": "var(--jeju-surface)",
+          "sidebar-foreground": "var(--jeju-text)",
+          "sidebar-primary": "var(--jeju-primary)",
+          "sidebar-primary-foreground": "var(--jeju-on-fill)",
+          "sidebar-accent": "var(--jeju-primary-tint)",
+          "sidebar-accent-foreground": "var(--jeju-primary)",
+          "sidebar-border": "var(--jeju-shell-border)",
+          "sidebar-ring": "var(--jeju-primary)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "body": {
+            "font-family": "var(--jeju-font)",
+            "font-size": "var(--jeju-text-base)",
+            "line-height": "var(--jeju-leading-normal)",
+            "background-color": "var(--jeju-bg)",
+            "color": "var(--jeju-text)",
+            "word-break": "keep-all",
+            "overflow-wrap": "break-word"
+          },
+          "a": {
+            "color": "var(--jeju-primary)",
+            "text-underline-offset": "2px"
+          }
+        },
+        "@media print": {
+          "body": {
+            "background-color": "var(--jeju-surface)"
+          },
+          "body:has(> [data-slot=\"sheet-content\"][data-side=\"right\"][data-state=\"open\"]) > :not([data-slot=\"sheet-content\"])": {
+            "display": "none"
+          },
+          "[data-slot=\"sheet-content\"][data-side=\"right\"][data-state=\"open\"]": {
+            "position": "absolute",
+            "inset": "0 0 auto 0",
+            "width": "auto",
+            "height": "auto",
+            "max-width": "none",
+            "overflow": "visible",
+            "border": "0",
+            "box-shadow": "none",
+            "animation": "none",
+            "transition": "none"
+          },
+          "[data-slot=\"sheet-content\"] > [data-slot=\"sheet-close\"], [data-slot=\"sheet-content\"] [data-slot=\"sheet-footer\"]": {
+            "display": "none"
+          },
+          ":focus-visible": {
+            "box-shadow": "none",
+            "outline": "0"
+          }
+        }
+      }
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "아코디언",
+      "description": "heading 안의 버튼, 위/아래/Home/End 이동. Tier 1 .jeju-accordion과 같은 모양.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "알림",
+      "description": "info/success/warning/danger 역할색. 제목으로 상태를 문구로도 밝힌다.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "확인 대화상자",
+      "description": "파괴적 동작 확인용. 배경 클릭으로 닫히지 않는다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/button"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "배지",
+      "description": "상태 배지 info/success/warning/danger/neutral. 항상 문구와 함께 쓴다.",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "경로 표시",
+      "description": "현재 위치 탐색. aria-current=page.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "버튼",
+      "description": "default(Blue) · secondary(Green strong) · accent(Orange strong) · outline · ghost · destructive · link. 높이는 프로필 토큰.",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "달력",
+      "description": "react-day-picker 기반 달력. 날짜 칸은 컨트롤 높이 토큰을 따른다.",
+      "dependencies": [
+        "react-day-picker@^9"
+      ],
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "카드",
+      "description": "1px 테두리 · 14px 모서리 카드.",
+      "files": [
+        {
+          "path": "registry/jeju/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "체크박스",
+      "description": "부분 선택(indeterminate) 표시를 지원한다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "type": "registry:ui",
+      "title": "칩",
+      "description": "제주 고유. 필터 칩(aria-pressed)과 제거 가능한 조건 칩.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/chip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "모달",
+      "description": "포커스 가둠 · Esc 닫기 · 포커스 복귀.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "드롭다운 메뉴",
+      "description": "화살표·Home·End 이동, Esc 시 트리거로 포커스 복귀.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "빈 상태",
+      "description": "무엇이 없고 다음에 무엇을 하면 되는지 함께 안내한다.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "폼 필드",
+      "description": "FieldSet/Legend/Label/Description/Error. 오류 문장에 경고 아이콘을 붙인다.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons",
+        "@jeju/label",
+        "@jeju/separator"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/field.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "입력",
+      "description": "기본·hover·focus·readonly·disabled·오류 상태.",
+      "files": [
+        {
+          "path": "registry/jeju/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "jeju-async-state",
+      "type": "registry:block",
+      "title": "로딩·오류 상태",
+      "description": "LoadingState(role=status · 스켈레톤) · ErrorState(role=alert · 다시 시도) · AsyncState(네 상태 중 하나만 표시).",
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens",
+        "@jeju/skeleton",
+        "@jeju/spinner"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-async-state/jeju-async-state.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-common",
+      "type": "registry:block",
+      "title": "제주 공통 조각",
+      "description": "브랜드 마크 자리표시자(공식 CI 아님)와 본문 바로가기 링크.",
+      "registryDependencies": [
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-common/jeju-common.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-contact",
+      "type": "registry:block",
+      "title": "문의·방문 안내",
+      "description": "담당 부서 · 전화 · 운영 시간 · 주소와 전화 걸기 · 지도 링크.",
+      "registryDependencies": [
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-contact/jeju-contact.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-data-table",
+      "type": "registry:block",
+      "title": "행정용 데이터 표",
+      "description": "정렬 · 행 선택 · 일괄 작업 · 페이지 크기 · 페이지 이동 · 고정 헤더 · 첫 열 고정 · 모바일 카드형 · 서버 조회형(manual) · 로딩/오류 상태. 추가 의존성 없음.",
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/checkbox",
+        "@jeju/empty",
+        "@jeju/jeju-async-state",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens",
+        "@jeju/native-select",
+        "@jeju/pagination",
+        "@jeju/skeleton",
+        "@jeju/table"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-data-table/jeju-data-table.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-date-picker",
+      "type": "registry:block",
+      "title": "날짜·기간 선택",
+      "description": "달력 팝오버와 기간 프리셋. YYYY-MM-DD 형식, 한국어 달력.",
+      "dependencies": [
+        "react-day-picker@^9"
+      ],
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/calendar",
+        "@jeju/chip",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens",
+        "@jeju/popover"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-date-picker/jeju-date-picker.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-detail-panel",
+      "type": "registry:block",
+      "title": "상세 보기 사이드 패널",
+      "description": "목록을 떠나지 않고 한 건의 상세를 오른쪽 패널로 본다. DetailPanel · DetailList.",
+      "registryDependencies": [
+        "@jeju/jeju-tokens",
+        "@jeju/sheet"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-detail-panel/jeju-detail-panel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-doc-list",
+      "type": "registry:block",
+      "title": "서식 내려받기",
+      "description": "문서명 · 형식 · 크기 · 개정일과 내려받기 버튼. 버튼 이름에 문서명과 형식이 들어간다.",
+      "registryDependencies": [
+        "@jeju/badge",
+        "@jeju/button",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-doc-list/jeju-doc-list.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-eligibility-check",
+      "type": "registry:block",
+      "title": "신청 자격 확인",
+      "description": "예/아니요 질문으로 신청 가능 여부를 자가 확인한다. 결과를 알림 색과 문구로 함께 보여 준다.",
+      "registryDependencies": [
+        "@jeju/alert",
+        "@jeju/field",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens",
+        "@jeju/radio-group"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-eligibility-check/jeju-eligibility-check.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-error-summary",
+      "type": "registry:block",
+      "title": "오류 요약",
+      "description": "제출 실패 시 폼 위에 두고 각 항목을 해당 입력으로 연결한다.",
+      "registryDependencies": [
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-error-summary/jeju-error-summary.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-example-form",
+      "type": "registry:block",
+      "title": "예제: 업무 등록 폼",
+      "description": "대상자 등록. 폼 상태 계층과 오류 요약. Tier 1 form.html의 React판.",
+      "dependencies": [
+        "react-day-picker@^9",
+        "sonner@^2"
+      ],
+      "registryDependencies": [
+        "@jeju/alert-dialog",
+        "@jeju/button",
+        "@jeju/checkbox",
+        "@jeju/field",
+        "@jeju/input",
+        "@jeju/jeju-date-picker",
+        "@jeju/jeju-error-summary",
+        "@jeju/jeju-file-upload",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-page-head",
+        "@jeju/jeju-shell",
+        "@jeju/jeju-tokens",
+        "@jeju/label",
+        "@jeju/radio-group",
+        "@jeju/select",
+        "@jeju/sonner",
+        "@jeju/switch",
+        "@jeju/textarea",
+        "@jeju/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/examples/jeju-example-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-example-gallery",
+      "type": "registry:block",
+      "title": "예제: 컴포넌트 갤러리",
+      "description": "브랜드 색 · 버튼 · 배지 · 알림 · 탭 · 카드 · 진행률 · 스위치 · 모달. Tier 1 index.html의 React판.",
+      "dependencies": [
+        "sonner@^2"
+      ],
+      "registryDependencies": [
+        "@jeju/alert",
+        "@jeju/badge",
+        "@jeju/button",
+        "@jeju/card",
+        "@jeju/dialog",
+        "@jeju/empty",
+        "@jeju/jeju-async-state",
+        "@jeju/jeju-data-table",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-page-head",
+        "@jeju/jeju-shell",
+        "@jeju/jeju-tokens",
+        "@jeju/label",
+        "@jeju/progress",
+        "@jeju/separator",
+        "@jeju/skeleton",
+        "@jeju/sonner",
+        "@jeju/spinner",
+        "@jeju/switch",
+        "@jeju/table",
+        "@jeju/tabs",
+        "@jeju/toggle",
+        "@jeju/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/examples/jeju-example-gallery.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-example-public",
+      "type": "registry:block",
+      "title": "예제: 대민 서비스 화면",
+      "description": "제주 돌봄서비스. Tier 1 public.html의 React판.",
+      "registryDependencies": [
+        "@jeju/accordion",
+        "@jeju/alert",
+        "@jeju/breadcrumb",
+        "@jeju/button",
+        "@jeju/checkbox",
+        "@jeju/field",
+        "@jeju/input",
+        "@jeju/jeju-common",
+        "@jeju/jeju-contact",
+        "@jeju/jeju-doc-list",
+        "@jeju/jeju-eligibility-check",
+        "@jeju/jeju-file-upload",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-public-shell",
+        "@jeju/jeju-related-links",
+        "@jeju/jeju-service-search",
+        "@jeju/jeju-tokens",
+        "@jeju/jeju-wizard",
+        "@jeju/label"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/examples/jeju-example-public.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-example-work",
+      "type": "registry:block",
+      "title": "예제: 업무 목록 화면",
+      "description": "통합돌봄 대상자 현황. Tier 1 work.html의 React판.",
+      "dependencies": [
+        "react-day-picker@^9",
+        "sonner@^2"
+      ],
+      "registryDependencies": [
+        "@jeju/alert",
+        "@jeju/badge",
+        "@jeju/button",
+        "@jeju/chip",
+        "@jeju/dropdown-menu",
+        "@jeju/jeju-data-table",
+        "@jeju/jeju-date-picker",
+        "@jeju/jeju-detail-panel",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-page-head",
+        "@jeju/jeju-search",
+        "@jeju/jeju-shell",
+        "@jeju/jeju-stat",
+        "@jeju/jeju-tokens",
+        "@jeju/label",
+        "@jeju/native-select",
+        "@jeju/sonner",
+        "@jeju/table",
+        "@jeju/tooltip"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/examples/jeju-example-work.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-file-upload",
+      "type": "registry:block",
+      "title": "파일 업로드",
+      "description": "끌어다 놓기 · 파일 목록 · 파일별 삭제 · 용량 제한 안내.",
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-file-upload/jeju-file-upload.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-icons",
+      "type": "registry:ui",
+      "title": "제주 아이콘(React)",
+      "description": "design/jeju-icons.svg에서 생성한 선형 아이콘. 크기는 --jeju-icon 토큰을 따르고 기본 aria-hidden이다.",
+      "files": [
+        {
+          "path": "registry/jeju/ui/jeju-icons.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "jeju-page-head",
+      "type": "registry:block",
+      "title": "페이지 머리",
+      "description": "제목(h1) · 설명 · 주요 액션.",
+      "registryDependencies": [
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-page-head/jeju-page-head.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-public-shell",
+      "type": "registry:block",
+      "title": "대민 셸",
+      "description": "masthead · 헤더(모바일 메뉴) · 본문 · 히어로 · 카드 · 기관 식별 · 푸터.",
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-common",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-public-shell/jeju-public-shell.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-related-links",
+      "type": "registry:block",
+      "title": "함께 찾는 서비스",
+      "description": "관련 서비스 링크 목록. 링크마다 누를 수 있는 영역을 토큰 이상으로 둔다.",
+      "registryDependencies": [
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-related-links/jeju-related-links.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-search",
+      "type": "registry:block",
+      "title": "검색 입력",
+      "description": "돋보기 아이콘이 붙은 검색 입력.",
+      "registryDependencies": [
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-search/jeju-search.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-service-search",
+      "type": "registry:block",
+      "title": "대민 서비스 검색",
+      "description": "검색어와 분류 칩으로 서비스 목록을 거르고 결과 수를 문구로 알린다. 결과가 없으면 빈 상태와 초기화.",
+      "registryDependencies": [
+        "@jeju/badge",
+        "@jeju/button",
+        "@jeju/chip",
+        "@jeju/empty",
+        "@jeju/jeju-search",
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-service-search/jeju-service-search.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-shell",
+      "type": "registry:block",
+      "title": "업무 셸",
+      "description": "GNB + LNB + 본문. 900px 이하에서 LNB가 드로어로 바뀐다.",
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-common",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-tokens",
+        "@jeju/sheet"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-shell/jeju-shell.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-stat",
+      "type": "registry:block",
+      "title": "KPI",
+      "description": "4 → 2 → 1열 KPI 묶음.",
+      "registryDependencies": [
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-stat/jeju-stat.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-steps",
+      "type": "registry:block",
+      "title": "단계 표시",
+      "description": "완료·현재·예정을 문구로도 알린다. 700px 이하 세로형.",
+      "registryDependencies": [
+        "@jeju/jeju-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-steps/jeju-steps.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "jeju-wizard",
+      "type": "registry:block",
+      "title": "신청 마법사",
+      "description": "단계 표시 + 진행률 + 이전/다음. 단계가 바뀌면 새 단계로 포커스를 옮긴다.",
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-icons",
+        "@jeju/jeju-steps",
+        "@jeju/jeju-tokens",
+        "@jeju/progress"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/blocks/jeju-wizard/jeju-wizard.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "라벨",
+      "description": "required를 주면 '필수' 문구를 붙인다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "기본 선택 상자",
+      "description": "브라우저 기본 select. 폼 제출이 단순할 때 권장.",
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "페이지 이동",
+      "description": "현재 페이지는 aria-current와 Primary 채움으로 표시.",
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "팝오버",
+      "description": "트리거 옆에 여는 보조 패널.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "진행률",
+      "description": "role=progressbar. 숫자 문구를 함께 둔다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "라디오 그룹",
+      "description": "화살표 키로 선택을 옮긴다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "선택 목록",
+      "description": "Radix Select. 커스텀 목록이 필요할 때 쓴다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "구분선",
+      "description": "가로·세로 구분선.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "시트(드로어)",
+      "description": "화면 가장자리 패널. 업무 셸의 모바일 메뉴에 쓴다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@jeju/button",
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "스켈레톤",
+      "description": "로딩 자리표시.",
+      "files": [
+        {
+          "path": "registry/jeju/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "토스트",
+      "description": "sonner 래퍼. 3개 상한 · 5초. 제주 아이콘과 반전 표면 토큰.",
+      "dependencies": [
+        "sonner@^2"
+      ],
+      "registryDependencies": [
+        "@jeju/jeju-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "스피너",
+      "description": "role=status 로딩 표시.",
+      "files": [
+        {
+          "path": "registry/jeju/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "스위치",
+      "description": "켜짐/꺼짐 문구를 옆에 함께 둔다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "표",
+      "description": "헤더 상단 2px Primary, 숫자 열 num, 행 선택 색.",
+      "files": [
+        {
+          "path": "registry/jeju/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "탭",
+      "description": "기본은 밑줄형(line). 화살표 키 이동.",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "여러 줄 입력",
+      "description": "최소 110px, 입력 상태는 input과 같다.",
+      "files": [
+        {
+          "path": "registry/jeju/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "토글 버튼",
+      "description": "눌림 상태를 aria-pressed로 알린다.",
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "툴팁",
+      "description": "보조 설명. 포커스로 열리고 Esc로 닫힌다.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/jeju/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

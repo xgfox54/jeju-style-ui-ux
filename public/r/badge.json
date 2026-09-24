@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "배지",
+  "description": "상태 배지 info/success/warning/danger/neutral. 항상 문구와 함께 쓴다.",
+  "dependencies": [
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/ui/badge.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { Slot } from \"radix-ui\"\n\nimport { cn } from \"@/lib/utils\"\n\n// 상태 배지는 항상 문구와 함께 쓴다. 색만으로 상태를 전달하지 않는다.\n// info/success/warning/danger/neutral은 Tier 1 .jeju-badge--*와 같은 역할색이다.\nconst badgeVariants = cva(\n  \"group/badge inline-flex min-h-6 w-fit shrink-0 items-center justify-center gap-1.25 overflow-hidden rounded-4xl border border-transparent px-2 py-0.75 text-(length:--jeju-text-xs) leading-none font-extrabold whitespace-nowrap transition-all focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) [&>svg]:pointer-events-none [&>svg]:size-3!\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-primary text-primary-foreground [a]:hover:bg-(--jeju-primary-hover)\",\n        secondary: \"bg-secondary text-secondary-foreground\",\n        destructive: \"bg-(--jeju-danger-tint) text-(--jeju-danger)\",\n        outline: \"border-border text-foreground [a]:hover:bg-muted\",\n        ghost: \"hover:bg-muted hover:text-muted-foreground\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n        info: \"bg-(--jeju-info-tint) text-(--jeju-info)\",\n        success: \"bg-(--jeju-success-tint) text-(--jeju-success)\",\n        warning: \"bg-(--jeju-warning-tint) text-(--jeju-warning)\",\n        danger: \"bg-(--jeju-danger-tint) text-(--jeju-danger)\",\n        neutral: \"bg-(--jeju-control-bg) text-(--jeju-text-muted)\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nfunction Badge({\n  className,\n  variant = \"default\",\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"span\"> &\n  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {\n  const Comp = asChild ? Slot.Root : \"span\"\n\n  return (\n    <Comp\n      data-slot=\"badge\"\n      data-variant={variant}\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Badge, badgeVariants }\n"
+    }
+  ]
+}

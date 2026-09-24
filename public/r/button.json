@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "버튼",
+  "description": "default(Blue) · secondary(Green strong) · accent(Orange strong) · outline · ghost · destructive · link. 높이는 프로필 토큰.",
+  "dependencies": [
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/ui/button.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { Slot } from \"radix-ui\"\n\nimport { cn } from \"@/lib/utils\"\n\n// shadcn 공식 button + 제주 토큰. 변형 이름은 Tier 1(.jeju-btn--*)과 같다.\n// secondary = Green 역할색(strong), accent = Orange 역할색(strong). 치수는 프로필 토큰을 따른다.\nconst buttonVariants = cva(\n  \"group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-(length:--jeju-control-font) font-bold whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:border-(--jeju-disabled-border) disabled:bg-(--jeju-disabled-bg) disabled:text-(--jeju-disabled-text) disabled:shadow-none aria-disabled:pointer-events-none aria-disabled:border-(--jeju-disabled-border) aria-disabled:bg-(--jeju-disabled-bg) aria-disabled:text-(--jeju-disabled-text) aria-disabled:shadow-none aria-invalid:border-destructive [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-(--jeju-icon)\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"bg-primary text-primary-foreground shadow-(--jeju-shadow-primary) hover:bg-(--jeju-primary-hover) active:bg-(--jeju-primary-active)\",\n        secondary:\n          \"bg-(--jeju-secondary-strong) text-(--jeju-on-fill) hover:bg-(--jeju-green-deep)\",\n        accent:\n          \"bg-(--jeju-accent-strong) text-(--jeju-on-fill) hover:bg-(--jeju-orange-deep)\",\n        outline:\n          \"border-input bg-card text-foreground hover:bg-muted aria-expanded:bg-muted\",\n        ghost:\n          \"text-(--jeju-text-body) hover:bg-muted hover:text-foreground aria-expanded:bg-muted\",\n        destructive: \"bg-destructive text-(--jeju-on-fill)\",\n        link: \"text-primary underline-offset-4 hover:underline\",\n      },\n      size: {\n        default: \"h-(--jeju-control-h) gap-1.5 px-3.5\",\n        xs: \"h-6 gap-1 rounded-md px-2 text-(length:--jeju-text-xs)\",\n        sm: \"h-(--jeju-control-h-sm) gap-1.5 px-3 text-(length:--jeju-control-font-sm)\",\n        lg: \"h-(--jeju-control-h-lg) gap-2 px-4.5 text-(length:--jeju-control-font-lg)\",\n        icon: \"size-(--jeju-control-h)\",\n        \"icon-xs\": \"size-6 rounded-md\",\n        \"icon-sm\": \"size-(--jeju-control-h-sm)\",\n        \"icon-lg\": \"size-(--jeju-control-h-lg)\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n)\n\nfunction Button({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  asChild = false,\n  ...props\n}: React.ComponentProps<\"button\"> &\n  VariantProps<typeof buttonVariants> & {\n    asChild?: boolean\n  }) {\n  const Comp = asChild ? Slot.Root : \"button\"\n\n  return (\n    <Comp\n      data-slot=\"button\"\n      data-variant={variant}\n      data-size={size}\n      className={cn(buttonVariants({ variant, size, className }))}\n      {...props}\n    />\n  )\n}\n\nexport { Button, buttonVariants }\n"
+    }
+  ]
+}

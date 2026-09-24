@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "title": "페이지 이동",
+  "description": "현재 페이지는 aria-current와 Primary 채움으로 표시.",
+  "registryDependencies": [
+    "@jeju/button",
+    "@jeju/jeju-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/ui/pagination.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Button } from \"@/components/ui/button\"\nimport { ChevronLeftIcon, ChevronRightIcon, MoreIcon } from \"@/components/ui/jeju-icons\"\n\nfunction Pagination({ className, ...props }: React.ComponentProps<\"nav\">) {\n  return (\n    <nav\n      aria-label=\"페이지\"\n      data-slot=\"pagination\"\n      className={cn(\"mx-auto flex w-full justify-center\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PaginationContent({\n  className,\n  ...props\n}: React.ComponentProps<\"ul\">) {\n  return (\n    <ul\n      data-slot=\"pagination-content\"\n      className={cn(\"m-0 flex list-none flex-wrap items-center gap-1.25 p-0\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction PaginationItem({ ...props }: React.ComponentProps<\"li\">) {\n  return <li data-slot=\"pagination-item\" {...props} />\n}\n\ntype PaginationLinkProps = {\n  isActive?: boolean\n} & Pick<React.ComponentProps<typeof Button>, \"size\"> &\n  React.ComponentProps<\"a\">\n\n// 현재 페이지는 aria-current=\"page\"와 Primary 채움으로 함께 표시한다(Tier 1 .jeju-pagination).\nfunction PaginationLink({\n  className,\n  isActive,\n  size = \"icon-sm\",\n  ...props\n}: PaginationLinkProps) {\n  return (\n    <Button\n      asChild\n      variant={isActive ? \"default\" : \"outline\"}\n      size={size}\n      className={cn(\n        \"font-semibold shadow-none tabular-nums forced-colors:aria-[current=page]:forced-color-adjust-none forced-colors:aria-[current=page]:bg-[Highlight] forced-colors:aria-[current=page]:text-[HighlightText]\",\n        className\n      )}\n    >\n      <a\n        aria-current={isActive ? \"page\" : undefined}\n        data-slot=\"pagination-link\"\n        data-active={isActive}\n        {...props}\n      />\n    </Button>\n  )\n}\n\nfunction PaginationPrevious({\n  className,\n  text = \"이전\",\n  ...props\n}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {\n  return (\n    <PaginationLink\n      aria-label=\"이전 페이지\"\n      size=\"sm\"\n      className={cn(\"px-2\", className)}\n      {...props}\n    >\n      <ChevronLeftIcon />\n      <span className=\"hidden sm:block\">{text}</span>\n    </PaginationLink>\n  )\n}\n\nfunction PaginationNext({\n  className,\n  text = \"다음\",\n  ...props\n}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {\n  return (\n    <PaginationLink\n      aria-label=\"다음 페이지\"\n      size=\"sm\"\n      className={cn(\"px-2\", className)}\n      {...props}\n    >\n      <span className=\"hidden sm:block\">{text}</span>\n      <ChevronRightIcon />\n    </PaginationLink>\n  )\n}\n\nfunction PaginationEllipsis({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      aria-hidden\n      data-slot=\"pagination-ellipsis\"\n      className={cn(\"flex size-(--jeju-control-h-sm) items-center justify-center text-muted-foreground\", className)}\n      {...props}\n    >\n      <MoreIcon />\n      <span className=\"sr-only\">생략된 페이지</span>\n    </span>\n  )\n}\n\nexport {\n  Pagination,\n  PaginationContent,\n  PaginationEllipsis,\n  PaginationItem,\n  PaginationLink,\n  PaginationNext,\n  PaginationPrevious,\n}\n"
+    }
+  ]
+}

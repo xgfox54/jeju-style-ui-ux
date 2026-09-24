@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jeju-common",
+  "type": "registry:block",
+  "title": "제주 공통 조각",
+  "description": "브랜드 마크 자리표시자(공식 CI 아님)와 본문 바로가기 링크.",
+  "registryDependencies": [
+    "@jeju/jeju-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/blocks/jeju-common/jeju-common.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// 제주 브랜드 마크 자리표시자. Blue·Green·Orange 토큰으로 그린 임시 표시이며 공식 제주 CI 로고가 아니다.\n// 공식 CI 자료가 확보되면 이 컴포넌트만 교체한다.\nfunction BrandMark({\n  size = \"default\",\n  className,\n  ...props\n}: React.ComponentProps<\"span\"> & { size?: \"default\" | \"lg\" }) {\n  return (\n    <span\n      aria-hidden=\"true\"\n      data-slot=\"brand-mark\"\n      data-size={size}\n      className={cn(\n        \"inline-block size-[34px] shrink-0 rounded-[10px] bg-[linear-gradient(135deg,var(--jeju-blue)_0_48%,var(--jeju-green)_48%_73%,var(--jeju-orange)_73%)] data-[size=lg]:size-[42px] data-[size=lg]:rounded-[12px] forced-colors:border forced-colors:border-[CanvasText]\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n// 키보드 사용자가 반복 메뉴를 건너뛰는 첫 링크. 포커스를 받을 때만 보인다.\nfunction SkipLink({\n  href = \"#main\",\n  children = \"본문 바로가기\",\n  className,\n  ...props\n}: React.ComponentProps<\"a\">) {\n  return (\n    <a\n      href={href}\n      data-slot=\"skip-link\"\n      className={cn(\n        \"fixed -top-20 left-3 z-(--jeju-z-toast) rounded-lg bg-(--jeju-text-strong) px-3.5 py-2.5 font-bold text-(--jeju-on-fill) no-underline focus:top-3\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </a>\n  )\n}\n\nexport { BrandMark, SkipLink }\n"
+    }
+  ]
+}

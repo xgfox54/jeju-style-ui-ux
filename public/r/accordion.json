@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "아코디언",
+  "description": "heading 안의 버튼, 위/아래/Home/End 이동. Tier 1 .jeju-accordion과 같은 모양.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@jeju/jeju-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/ui/accordion.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Accordion as AccordionPrimitive } from \"radix-ui\"\n\nimport { cn } from \"@/lib/utils\"\nimport { ChevronDownIcon } from \"@/components/ui/jeju-icons\"\n\n// 제목은 heading(h3) 안의 button이다. 위/아래/Home/End로 제목 사이를 이동한다(Radix).\nfunction Accordion({\n  className,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Root>) {\n  return (\n    <AccordionPrimitive.Root\n      data-slot=\"accordion\"\n      className={cn(\n        \"flex w-full flex-col overflow-hidden rounded-xl border border-border bg-card\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AccordionItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Item>) {\n  return (\n    <AccordionPrimitive.Item\n      data-slot=\"accordion-item\"\n      className={cn(\"not-last:border-b not-last:border-(--jeju-hairline)\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction AccordionTrigger({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {\n  return (\n    <AccordionPrimitive.Header className=\"m-0 flex\">\n      <AccordionPrimitive.Trigger\n        data-slot=\"accordion-trigger\"\n        className={cn(\n          \"group/accordion-trigger relative flex min-h-(--jeju-control-h-lg) flex-1 items-center justify-between gap-3 border border-transparent px-4.5 py-3.5 text-left text-(length:--jeju-text-md) font-bold text-(--jeju-text-strong) transition-all outline-none hover:bg-(--jeju-surface-inset) focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) disabled:pointer-events-none disabled:text-(--jeju-disabled-text) aria-expanded:text-primary\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        <ChevronDownIcon\n          data-slot=\"accordion-trigger-icon\"\n          className=\"pointer-events-none ml-auto shrink-0 text-muted-foreground transition-transform duration-150 group-aria-expanded/accordion-trigger:rotate-180 group-aria-expanded/accordion-trigger:text-primary\"\n        />\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  )\n}\n\nfunction AccordionContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionPrimitive.Content>) {\n  return (\n    <AccordionPrimitive.Content\n      data-slot=\"accordion-content\"\n      className=\"overflow-hidden text-(length:--jeju-text-base) text-(--jeju-text-body) data-open:animate-accordion-down data-closed:animate-accordion-up\"\n      {...props}\n    >\n      <div\n        className={cn(\n          \"h-(--radix-accordion-content-height) px-4.5 pt-0 pb-4.5 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4\",\n          className\n        )}\n      >\n        {children}\n      </div>\n    </AccordionPrimitive.Content>\n  )\n}\n\nexport { Accordion, AccordionItem, AccordionTrigger, AccordionContent }\n"
+    }
+  ]
+}

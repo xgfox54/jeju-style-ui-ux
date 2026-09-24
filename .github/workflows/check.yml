@@ -1,0 +1,79 @@
+# Jeju Style UI·UX 디자인 가이드 검사
+# static : 정본(J1~J19) · 예제 gate · 레지스트리 · 토큰 문서 신선도 · standalone 자기완결성, standalone HTML을 산출물로 남긴다.
+# browser: 빈 Vite 프로젝트에 @jeju 레지스트리를 설치해 타입 검사·빌드·gate(S1~S8)·Playwright 검증(Chromium 전체 + Firefox · WebKit 핵심)을 돌린다.
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 정본 검사 (J1~J19)
+        run: python design/check_design.py --canon
+      - name: 예제 gate
+        run: python design/check_design.py --gate design/examples
+      - name: 레지스트리 생성물 신선도
+        run: python tools/build_registry.py --check
+      - name: 토큰 문서 신선도
+        run: python tools/build_token_docs.py --check
+      - name: standalone 생성
+        run: python tools/build_standalone.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: standalone-html
+          path: dist/standalone
+
+  browser:
+    needs: static
+    runs-on: ubuntu-latest
+    env:
+      CONSUMER: ${{ runner.temp }}/consumer
+      JEJU_BROWSER: chromium
+      JEJU_STANDALONE_DIR: ${{ github.workspace }}/dist/standalone
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: 레지스트리 · Tier 1 예제 서빙, standalone 생성
+        run: |
+          python tools/build_standalone.py
+          nohup python -m http.server 8765 --bind 127.0.0.1 > /tmp/registry.log 2>&1 &
+      - name: 소비 프로젝트 만들기
+        working-directory: ${{ runner.temp }}
+        run: |
+          npx --yes shadcn@4 init -t vite -b radix -p nova -n consumer --no-monorepo -y
+          node "$GITHUB_WORKSPACE/tools/e2e/prepare-consumer.mjs" registry consumer
+          cd consumer
+          npx shadcn add @jeju/jeju-style -y -o
+          npx shadcn add $(node "$GITHUB_WORKSPACE/tools/e2e/prepare-consumer.mjs" items) -y -o
+          node "$GITHUB_WORKSPACE/tools/e2e/prepare-consumer.mjs" finish .
+          npm i -D playwright
+          npx playwright install --with-deps chromium firefox webkit
+      - name: 타입 검사 · 빌드
+        working-directory: ${{ env.CONSUMER }}
+        run: npx tsc -b && npx vite build
+      - name: 소비 프로젝트 gate (S1~S8)
+        run: python design/check_design.py --gate "$CONSUMER"
+      - name: 브라우저 검증
+        working-directory: ${{ env.CONSUMER }}
+        run: |
+          nohup npx vite preview --port 4173 --strictPort --host 127.0.0.1 > /tmp/preview.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:4173/ > /dev/null && break; sleep 1; done
+          node verify-react.mjs
+          node verify-browsers.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e2e-shots
+          path: ${{ env.CONSUMER }}/shots

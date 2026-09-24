@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chip",
+  "type": "registry:ui",
+  "title": "칩",
+  "description": "제주 고유. 필터 칩(aria-pressed)과 제거 가능한 조건 칩.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@jeju/jeju-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/ui/chip.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Toggle as TogglePrimitive } from \"radix-ui\"\n\nimport { cn } from \"@/lib/utils\"\nimport { CloseIcon } from \"@/components/ui/jeju-icons\"\n\n// 제주 고유 컴포넌트(Tier 1 .jeju-chip). 필터 칩은 aria-pressed로 켜짐을 알리고,\n// 조건 칩의 제거 버튼은 무엇을 지우는지 드러나는 이름(removeLabel)을 가진다.\nconst chipBase =\n  \"inline-flex min-h-(--jeju-chip-h) items-center gap-1.5 rounded-full border border-input bg-card px-3 py-1 text-(length:--jeju-text-sm) font-bold text-(--jeju-text-body) [&_svg]:size-3.5 [&_svg]:shrink-0\"\n\nfunction ChipSet({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"chip-set\"\n      className={cn(\"flex flex-wrap items-center gap-2\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction Chip({\n  className,\n  ...props\n}: React.ComponentProps<typeof TogglePrimitive.Root>) {\n  return (\n    <TogglePrimitive.Root\n      data-slot=\"chip\"\n      className={cn(\n        chipBase,\n        \"cursor-pointer transition-colors outline-none hover:bg-muted focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) disabled:pointer-events-none disabled:text-(--jeju-disabled-text) data-[state=on]:border-primary data-[state=on]:bg-(--jeju-primary-tint) data-[state=on]:text-primary forced-colors:data-[state=on]:forced-color-adjust-none forced-colors:data-[state=on]:bg-[Highlight] forced-colors:data-[state=on]:text-[HighlightText]\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction RemovableChip({\n  className,\n  children,\n  removeLabel,\n  onRemove,\n  ...props\n}: React.ComponentProps<\"span\"> & {\n  removeLabel: string\n  onRemove?: () => void\n}) {\n  return (\n    <span data-slot=\"removable-chip\" className={cn(chipBase, \"pr-1.5\", className)} {...props}>\n      {children}\n      <button\n        type=\"button\"\n        data-slot=\"chip-remove\"\n        aria-label={removeLabel}\n        onClick={onRemove}\n        className=\"relative inline-grid size-(--jeju-chip-remove) cursor-pointer place-items-center rounded-full border-0 bg-muted p-0 text-muted-foreground outline-none after:absolute after:top-1/2 after:left-1/2 after:size-(--jeju-target-min) after:-translate-x-1/2 after:-translate-y-1/2 hover:bg-(--jeju-border-strong) hover:text-(--jeju-text-strong) focus-visible:shadow-(--jeju-focus-ring) [&_svg]:size-3!\"\n      >\n        <CloseIcon />\n      </button>\n    </span>\n  )\n}\n\nexport { Chip, ChipSet, RemovableChip }\n"
+    }
+  ]
+}

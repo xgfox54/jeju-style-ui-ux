@@ -1,0 +1,19 @@
+/* ==========================================================================
+ * jeju-fonts.css — Pretendard GOV 자체 호스팅 선언 v0.5.0
+ *
+ * - 외부 CDN을 쓰지 않는다. 글꼴 파일은 이 CSS와 같은 폴더에 둔다.
+ * - 파일을 두기 전까지는 local() → 토큰의 대체 글꼴(Noto Sans KR · 맑은 고딕) 순으로 표시된다.
+ * - 배치 방법과 라이선스 확인은 같은 폴더의 README.md를 따른다.
+ * - 토큰(--jeju-font)의 첫 글꼴 이름 "Pretendard GOV"와 font-family가 같아야 한다(검사기 J18).
+ * ========================================================================== */
+
+@font-face {
+  font-family: "Pretendard GOV";
+  font-style: normal;
+  font-weight: 45 920;
+  font-display: swap;
+  src:
+    local("Pretendard GOV Variable"),
+    local("PretendardGOVVariable"),
+    url("./PretendardGOVVariable.woff2") format("woff2");
+}

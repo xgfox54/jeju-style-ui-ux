@@ -1,0 +1,187 @@
+/* jeju-public.css — 제주특별자치도 대민 서비스용 공통 셸 · 대민 서비스 컴포넌트 v0.6.0 */
+
+[data-jeju-profile="public"] body { background: var(--jeju-surface); }
+
+.jeju-masthead {
+  background: var(--jeju-surface-inset); border-bottom: 1px solid var(--jeju-border);
+  color: var(--jeju-text-body); font-size: var(--jeju-text-sm);
+}
+.jeju-masthead__inner, .jeju-public-header__inner, .jeju-public-main, .jeju-public-footer__inner, .jeju-identifier__inner {
+  max-width: var(--jeju-container-max); margin: 0 auto; padding-inline: 24px;
+}
+.jeju-masthead__inner { min-height: 36px; display: flex; align-items: center; gap: 8px; }
+
+.jeju-public-header { background: var(--jeju-surface); border-bottom: 1px solid var(--jeju-shell-border); }
+.jeju-public-header__inner {
+  min-height: 92px; display: flex; align-items: center; gap: 24px; position: relative;
+}
+.jeju-public-brand { display: inline-flex; align-items: center; gap: 12px; min-height: var(--jeju-target-min); color: var(--jeju-text-strong); text-decoration: none; font-size: 21px; font-weight: 850; }
+.jeju-public-brand__mark {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--jeju-blue) 0 48%, var(--jeju-green) 48% 73%, var(--jeju-orange) 73%);
+}
+.jeju-public-nav { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+.jeju-public-nav a {
+  min-height: 48px; padding: 0 15px; display: inline-flex; align-items: center;
+  color: var(--jeju-text-body); text-decoration: none; border-radius: var(--jeju-radius); font-weight: 750;
+}
+.jeju-public-nav a:hover, .jeju-public-nav a[aria-current="page"] { background: var(--jeju-primary-tint); color: var(--jeju-primary); }
+.jeju-public-menu-toggle { display: none; margin-left: auto; }
+
+.jeju-public-main { padding-top: 40px; padding-bottom: 64px; }
+.jeju-page-title { margin-bottom: 28px; }
+.jeju-page-title h1 { margin: 0; font-size: var(--jeju-h1-size); line-height: var(--jeju-leading-tight); color: var(--jeju-text-strong); }
+.jeju-page-title p { margin: 12px 0 0; color: var(--jeju-text-muted); max-width: 760px; }
+
+.jeju-hero {
+  padding: 36px; border-radius: 20px; background:
+    linear-gradient(120deg, var(--jeju-blue-light), var(--jeju-surface) 48%, var(--jeju-green-light));
+  border: 1px solid var(--jeju-border);
+}
+.jeju-hero__eyebrow { color: var(--jeju-primary); font-weight: 850; }
+.jeju-hero h1 { margin: 8px 0 12px; font-size: clamp(30px, 4vw, 44px); line-height: 1.2; color: var(--jeju-text-strong); }
+.jeju-hero p { max-width: 760px; margin: 0; color: var(--jeju-text-body); }
+
+.jeju-public-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.jeju-public-card {
+  min-width: 0; padding: 24px; border: 1px solid var(--jeju-border); border-radius: var(--jeju-radius-lg); background: var(--jeju-surface);
+}
+.jeju-public-card h2, .jeju-public-card h3 { margin: 0 0 10px; color: var(--jeju-text-strong); }
+.jeju-public-card p { margin: 0; color: var(--jeju-text-muted); }
+
+.jeju-identifier { border-top: 1px solid var(--jeju-border); background: var(--jeju-surface-inset); }
+.jeju-identifier__inner { padding-top: 18px; padding-bottom: 18px; display: flex; gap: 12px; align-items: center; color: var(--jeju-text-muted); }
+.jeju-identifier__bar { width: 5px; height: 26px; border-radius: 99px; background: linear-gradient(var(--jeju-blue) 0 34%, var(--jeju-green) 34% 67%, var(--jeju-orange) 67%); }
+
+.jeju-public-footer { border-top: 1px solid var(--jeju-shell-border); background: var(--jeju-surface-inset); }
+.jeju-public-footer__inner { padding-top: 28px; padding-bottom: 28px; color: var(--jeju-text-muted); }
+.jeju-public-footer strong { color: var(--jeju-text-strong); }
+
+@media (max-width: 900px) {
+  .jeju-public-menu-toggle { display: inline-flex; }
+  .jeju-public-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% - 6px);
+    left: 16px;
+    right: 16px;
+    z-index: 1100;
+    margin-left: 0;
+    padding: 8px;
+    background: var(--jeju-surface);
+    border: 1px solid var(--jeju-border);
+    border-radius: var(--jeju-radius-lg);
+    box-shadow: 0 12px 30px rgba(15, 31, 43, .14);
+  }
+  .jeju-public-nav[data-open="true"] { display: grid; }
+  .jeju-public-nav a { width: 100%; }
+  .jeju-public-header__inner { min-height: 76px; }
+  .jeju-public-grid { grid-template-columns: 1fr; }
+  .jeju-masthead__inner, .jeju-public-header__inner, .jeju-public-main, .jeju-public-footer__inner, .jeju-identifier__inner { padding-inline: 16px; }
+}
+
+@media (max-width: 560px) {
+  .jeju-hero { padding: 24px 20px; }
+}
+
+/* ------------------------------------------------------------------------
+ * v0.4 대민 서비스 컴포넌트
+ * 서비스 검색 · 신청 자격 확인 · 서식 내려받기 · 문의·위치 · 함께 찾는 서비스
+ * 누를 수 있는 요소는 --jeju-target-min(대민 44px) 이상이다.
+ * ------------------------------------------------------------------------ */
+.jeju-service-search { display: grid; gap: var(--jeju-space-4); min-width: 0; }
+.jeju-service-search__form { display: grid; gap: var(--jeju-space-2); }
+.jeju-service-search__row { display: flex; gap: var(--jeju-space-2); align-items: stretch; }
+.jeju-service-search__row .jeju-search { flex: 1 1 auto; min-width: 0; }
+.jeju-service-search__count { margin: 0; color: var(--jeju-text-muted); font-size: var(--jeju-text-sm); }
+.jeju-service-list {
+  margin: 0; padding: 0; list-style: none;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--jeju-space-4);
+}
+.jeju-service-item { min-width: 0; }
+.jeju-service-item__link {
+  display: grid; align-content: start; gap: 10px; height: 100%; min-height: var(--jeju-target-min);
+  padding: var(--jeju-card-pad); border: 1px solid var(--jeju-border); border-radius: var(--jeju-radius-lg);
+  background: var(--jeju-surface); color: inherit; text-decoration: none;
+}
+.jeju-service-item__link:hover { border-color: var(--jeju-primary); }
+.jeju-service-item__link:hover .jeju-service-item__title { color: var(--jeju-primary); text-decoration: underline; }
+.jeju-service-item .jeju-badge { justify-self: start; }
+.jeju-service-item__title { color: var(--jeju-text-strong); font-size: var(--jeju-text-lg); font-weight: 800; }
+.jeju-service-item__desc { color: var(--jeju-text-muted); }
+.jeju-service-item__meta { color: var(--jeju-text-subtle); font-size: var(--jeju-text-sm); }
+
+.jeju-checklist { display: grid; gap: var(--jeju-space-3); min-width: 0; }
+.jeju-checklist__item {
+  min-width: 0; margin: 0; padding: var(--jeju-space-4) var(--jeju-space-5);
+  display: grid; gap: var(--jeju-space-2);
+  border: 1px solid var(--jeju-border); border-radius: var(--jeju-radius-lg); background: var(--jeju-surface);
+}
+.jeju-checklist__item > legend { float: left; width: 100%; padding: 0; font-weight: 800; color: var(--jeju-text-strong); }
+.jeju-checklist__item > legend + * { clear: both; }
+.jeju-checklist__num { margin-right: var(--jeju-space-2); color: var(--jeju-primary); font-variant-numeric: tabular-nums; }
+.jeju-checklist__hint { margin: 0; color: var(--jeju-text-subtle); font-size: var(--jeju-text-sm); }
+.jeju-checklist__result > div { display: grid; gap: 4px; }
+.jeju-checklist__result p { margin: 0; color: var(--jeju-text-body); }
+
+.jeju-doc-list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--jeju-space-2); }
+.jeju-doc {
+  display: flex; align-items: center; gap: var(--jeju-space-3); min-width: 0;
+  padding: var(--jeju-space-3) var(--jeju-space-4);
+  border: 1px solid var(--jeju-border); border-radius: var(--jeju-radius); background: var(--jeju-surface);
+}
+.jeju-doc > .jeju-icon { color: var(--jeju-text-muted); }
+.jeju-doc__body { display: grid; gap: 2px; min-width: 0; flex: 1 1 auto; }
+.jeju-doc__title { color: var(--jeju-text-strong); font-weight: 800; overflow-wrap: anywhere; }
+.jeju-doc__meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  color: var(--jeju-text-subtle); font-size: var(--jeju-text-sm); font-variant-numeric: tabular-nums;
+}
+.jeju-doc .jeju-btn { flex: 0 0 auto; }
+
+.jeju-contact {
+  display: grid; align-content: start; gap: var(--jeju-space-4); min-width: 0;
+  padding: var(--jeju-card-pad); border: 1px solid var(--jeju-border); border-radius: var(--jeju-radius-lg); background: var(--jeju-surface);
+}
+.jeju-contact h2, .jeju-contact h3 { margin: 0; color: var(--jeju-text-strong); }
+.jeju-contact__list { margin: 0; display: grid; gap: var(--jeju-space-2); }
+.jeju-contact__row { display: grid; grid-template-columns: 8em minmax(0, 1fr); gap: var(--jeju-space-3); align-items: center; }
+.jeju-contact__row dt { display: inline-flex; align-items: center; gap: 8px; color: var(--jeju-text-muted); font-weight: 750; }
+.jeju-contact__row dd { margin: 0; color: var(--jeju-text-body); overflow-wrap: anywhere; }
+.jeju-contact__row dd a { display: inline-flex; align-items: center; min-height: var(--jeju-target-min); font-weight: 750; }
+.jeju-contact__actions { display: flex; flex-wrap: wrap; gap: var(--jeju-space-2); }
+
+.jeju-related { display: grid; gap: var(--jeju-space-3); min-width: 0; }
+.jeju-related h2, .jeju-related h3 { margin: 0; color: var(--jeju-text-strong); }
+.jeju-related ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--jeju-space-2); }
+.jeju-related a {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--jeju-space-3);
+  min-height: var(--jeju-target-min); padding: 10px var(--jeju-space-4);
+  border: 1px solid var(--jeju-border); border-radius: var(--jeju-radius); background: var(--jeju-surface);
+  color: var(--jeju-text-body); font-weight: 750; text-decoration: none;
+}
+.jeju-related a:hover { border-color: var(--jeju-primary); color: var(--jeju-primary); }
+.jeju-related a .jeju-icon { color: var(--jeju-text-faint); }
+
+@media (max-width: 900px) {
+  .jeju-service-list { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .jeju-service-search__row { flex-direction: column; }
+  .jeju-doc { flex-wrap: wrap; }
+  .jeju-doc .jeju-btn { width: 100%; }
+  .jeju-contact__row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .jeju-related ul { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* v0.6 인쇄 — 안내문을 종이로 가져가는 시민을 위해 메뉴·검색은 빼고, 기관 식별과 외부 링크 주소는 남긴다. */
+@media print {
+  .jeju-masthead, .jeju-public-nav, .jeju-public-menu-toggle, .jeju-service-search__form,
+  .jeju-contact__actions, .jeju-public-footer { display: none !important; }
+  .jeju-public-header { position: static; border-bottom: 1px solid var(--jeju-border-strong); }
+  .jeju-public-main a[href^="http"]::after {
+    content: " (" attr(href) ")"; font-size: var(--jeju-text-xs); overflow-wrap: anywhere;
+  }
+  .jeju-public-card, .jeju-doc, .jeju-checklist__item { break-inside: avoid; }
+}

@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jeju Design — 업무 화면 표준 예제</title>
+  <link rel="stylesheet" href="../jeju-tokens.css">
+  <link rel="stylesheet" href="../jeju-components.css">
+  <link rel="stylesheet" href="examples.css">
+  <script src="../jeju-behaviors.js" defer></script>
+</head>
+<body>
+<a class="jeju-skip-link" href="#main">본문 바로가기</a>
+<div class="jeju-utility-bar">
+  <div class="jeju-utility-bar__inner">
+    <strong>제주특별자치도 업무 UI 표준 예제</strong>
+    <span>Work profile · 36px control</span>
+  </div>
+</div>
+<header class="jeju-gnb">
+  <div class="jeju-gnb__inner">
+    <button class="jeju-btn jeju-btn--ghost jeju-btn--sm jeju-menu-toggle" type="button"
+      data-jeju-drawer-toggle="work-lnb" aria-expanded="false" aria-controls="work-lnb">
+      <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-menu"></use></svg>
+      메뉴
+    </button>
+    <a class="jeju-brand" href="./work.html">
+      <span class="jeju-brand__mark" aria-hidden="true"></span>
+      <span>통합돌봄 업무관리</span>
+    </a>
+    <span class="jeju-gnb__title">제주특별자치도</span>
+  </div>
+</header>
+
+<div class="jeju-shell">
+  <aside class="jeju-lnb" id="work-lnb">
+    <p class="jeju-lnb__title">통합돌봄</p>
+    <nav aria-label="업무 메뉴">
+      <a href="#" aria-current="page">대상자 현황</a>
+      <a href="./list.html">서비스 연계 요청</a>
+      <a href="#">제공기관 관리</a>
+      <a href="#">실적·통계</a>
+      <a href="./form.html">대상자 등록</a>
+      <a href="#">기준정보</a>
+    </nav>
+  </aside>
+
+  <main class="jeju-main" id="main">
+    <div class="jeju-main__inner jeju-main__inner--wide">
+      <nav class="demo-page-links" aria-label="디자인 예제 이동">
+        <a class="jeju-btn jeju-btn--outline jeju-btn--sm" href="./index.html">컴포넌트 갤러리</a>
+        <a class="jeju-btn jeju-btn--primary jeju-btn--sm" href="./work.html" aria-current="page">업무 예제</a>
+        <a class="jeju-btn jeju-btn--outline jeju-btn--sm" href="./list.html">서버 목록 예제</a>
+        <a class="jeju-btn jeju-btn--outline jeju-btn--sm" href="./form.html">업무 폼 예제</a>
+        <a class="jeju-btn jeju-btn--outline jeju-btn--sm" href="./public.html">대민 예제</a>
+      </nav>
+
+      <div class="jeju-page-head">
+        <div>
+          <h1>통합돌봄 대상자 현황</h1>
+          <p>대상자의 접수·연계·완료 상태를 확인하고 필요한 업무를 처리합니다.</p>
+        </div>
+        <div class="jeju-actions">
+          <button class="jeju-btn jeju-btn--outline" type="button">
+            <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-download"></use></svg>
+            엑셀 내려받기
+          </button>
+          <a class="jeju-btn jeju-btn--primary" href="./form.html">
+            <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-plus"></use></svg>
+            대상자 등록
+          </a>
+        </div>
+      </div>
+
+      <section class="jeju-stat-grid" aria-label="업무 현황">
+        <article class="jeju-stat"><div class="jeju-stat__label">전체 대상자</div><div class="jeju-stat__value">1,284</div><div class="jeju-stat__meta">기준일 현재</div></article>
+        <article class="jeju-stat"><div class="jeju-stat__label">신규 접수</div><div class="jeju-stat__value">42</div><div class="jeju-stat__meta">이번 주</div></article>
+        <article class="jeju-stat"><div class="jeju-stat__label">서비스 연계 중</div><div class="jeju-stat__value">317</div><div class="jeju-stat__meta">진행 중</div></article>
+        <article class="jeju-stat"><div class="jeju-stat__label">검토 필요</div><div class="jeju-stat__value">9</div><div class="jeju-stat__meta">우선 확인</div></article>
+      </section>
+
+      <section class="demo-section" aria-labelledby="search-title">
+        <h2 class="demo-section-title" id="search-title">검색·필터</h2>
+        <form class="demo-toolbar">
+          <div class="jeju-field">
+            <label for="district">지역</label>
+            <select id="district"><option>전체</option><option>동부</option><option>서부</option></select>
+          </div>
+          <div class="jeju-field">
+            <label for="status">진행상태</label>
+            <select id="status"><option>전체</option><option>접수</option><option>연계 중</option><option>완료</option></select>
+          </div>
+          <div class="jeju-field">
+            <label for="work-date-from">접수 시작일</label>
+            <input id="work-date-from" type="date" value="2026-09-01">
+          </div>
+          <div class="jeju-field">
+            <label for="keyword-work">검색어</label>
+            <input id="keyword-work" type="search" placeholder="대상자명 또는 관리번호">
+          </div>
+          <div class="demo-toolbar__actions">
+            <button class="jeju-btn jeju-btn--outline" type="reset">초기화</button>
+            <button class="jeju-btn jeju-btn--primary" type="submit">
+              <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-search"></use></svg>
+              검색
+            </button>
+          </div>
+        </form>
+        <div class="jeju-chip-set demo-section">
+          <span class="jeju-chip jeju-chip--removable">지역: 동부
+            <button class="jeju-chip__remove" type="button" aria-label="지역 동부 조건 제거">
+              <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-close"></use></svg>
+            </button>
+          </span>
+          <span class="jeju-chip jeju-chip--removable">상태: 연계 중
+            <button class="jeju-chip__remove" type="button" aria-label="상태 연계 중 조건 제거">
+              <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-close"></use></svg>
+            </button>
+          </span>
+          <span class="jeju-chip jeju-chip--removable">접수일: 2026-09-01 이후
+            <button class="jeju-chip__remove" type="button" aria-label="접수일 조건 제거">
+              <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-close"></use></svg>
+            </button>
+          </span>
+        </div>
+      </section>
+
+      <section class="demo-section" aria-labelledby="list-title" data-jeju-table-select>
+        <div class="jeju-page-head">
+          <div><h2 id="list-title">대상자 목록</h2><p>총 1,284건 중 6건 표시</p></div>
+          <div class="jeju-actions">
+            <span class="jeju-menu-wrap" data-jeju-menu>
+              <button class="jeju-btn jeju-btn--outline jeju-btn--sm" type="button" data-jeju-menu-trigger aria-haspopup="menu" aria-expanded="false">
+                <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-more"></use></svg>
+                목록 도구
+              </button>
+              <ul class="jeju-menu" role="menu" hidden>
+                <li><button class="jeju-menu__item" type="button" role="menuitem"><svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-refresh"></use></svg>새로고침</button></li>
+                <li><button class="jeju-menu__item" type="button" role="menuitem"><svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-settings"></use></svg>표시 항목 설정</button></li>
+                <li><button class="jeju-menu__item" type="button" role="menuitem" data-jeju-print><svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-print"></use></svg>목록 인쇄</button></li>
+              </ul>
+            </span>
+          </div>
+        </div>
+
+        <div class="jeju-bulkbar" data-jeju-bulkbar hidden>
+          <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-check"></use></svg>
+          <span><span class="jeju-bulkbar__count" data-jeju-select-count>0</span>건 선택됨</span>
+          <span class="jeju-bulkbar__actions">
+            <button class="jeju-btn jeju-btn--outline jeju-btn--sm" type="button">담당자 배정</button>
+            <button class="jeju-btn jeju-btn--secondary jeju-btn--sm" type="button">연계 완료 처리</button>
+            <button class="jeju-btn jeju-btn--danger jeju-btn--sm" type="button">선택 삭제</button>
+          </span>
+        </div>
+
+        <div class="jeju-table-toolbar">
+          <p class="jeju-table-toolbar__meta">열 제목 버튼을 눌러 정렬할 수 있습니다. 관리번호 열은 가로 스크롤 시 고정됩니다.</p>
+          <div class="jeju-table-toolbar__tools">
+            <span class="jeju-pagesize">
+              <label for="page-size">페이지당</label>
+              <select id="page-size">
+                <option>20건</option>
+                <option>50건</option>
+                <option>100건</option>
+              </select>
+            </span>
+            <button class="jeju-btn jeju-btn--outline jeju-btn--sm" type="button">
+              <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-filter"></use></svg>
+              상세 필터
+            </button>
+          </div>
+        </div>
+
+        <div class="jeju-table-wrap jeju-table-wrap--sticky">
+          <table class="jeju-table jeju-table--sticky jeju-table--pinned-col jeju-table--stack" data-jeju-sortable>
+            <caption class="jeju-visually-hidden">통합돌봄 대상자 목록. 관리번호, 대상자, 지역, 주요 서비스, 상태, 담당, 최근 처리일, 처리 건수 열로 구성되어 있습니다.</caption>
+            <thead>
+              <tr>
+                <th class="check" scope="col">
+                  <label class="jeju-choice">
+                    <input type="checkbox" data-jeju-select-all>
+                    <span class="jeju-visually-hidden">전체 선택</span>
+                  </label>
+                </th>
+                <th scope="col" data-sort="text" aria-sort="none">
+                  <button class="jeju-table__sort" type="button">관리번호<svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-sort"></use></svg></button>
+                </th>
+                <th scope="col">대상자</th>
+                <th scope="col" data-sort="text" aria-sort="none">
+                  <button class="jeju-table__sort" type="button">지역<svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-sort"></use></svg></button>
+                </th>
+                <th scope="col">주요 서비스</th>
+                <th scope="col">상태</th>
+                <th scope="col">담당</th>
+                <th scope="col" data-sort="text" aria-sort="none">
+                  <button class="jeju-table__sort" type="button">최근 처리일<svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-sort"></use></svg></button>
+                </th>
+                <th scope="col" class="num" data-sort="number" aria-sort="none">
+                  <button class="jeju-table__sort" type="button">연계 건수<svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-sort"></use></svg></button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="check" data-label="선택"><label class="jeju-choice"><input type="checkbox" data-jeju-select-row><span class="jeju-visually-hidden">IC-2609128 선택</span></label></td>
+                <td data-label="관리번호"><button class="jeju-table__link" type="button" data-jeju-dialog-open="detail-panel" aria-label="IC-2609128 상세 보기">IC-2609128</button></td>
+                <td data-label="대상자">김○○</td>
+                <td data-label="지역">동부</td>
+                <td data-label="주요 서비스">식사지원·안부확인</td>
+                <td data-label="상태"><span class="jeju-badge jeju-badge--info">연계 중</span></td>
+                <td data-label="담당">돌봄관리팀</td>
+                <td data-label="최근 처리일">2026-09-22</td>
+                <td class="num" data-label="연계 건수">4</td>
+              </tr>
+              <tr>
+                <td class="check" data-label="선택"><label class="jeju-choice"><input type="checkbox" data-jeju-select-row><span class="jeju-visually-hidden">IC-2609127 선택</span></label></td>
+                <td data-label="관리번호"><button class="jeju-table__link" type="button" data-jeju-dialog-open="detail-panel" aria-label="IC-2609127 상세 보기">IC-2609127</button></td>
+                <td data-label="대상자">이○○</td>
+                <td data-label="지역">서부</td>
+                <td data-label="주요 서비스">주거지원</td>
+                <td data-label="상태"><span class="jeju-badge jeju-badge--success">완료</span></td>
+                <td data-label="담당">복지지원팀</td>
+                <td data-label="최근 처리일">2026-09-21</td>
+                <td class="num" data-label="연계 건수">11</td>
+              </tr>
+              <tr>
+                <td class="check" data-label="선택"><label class="jeju-choice"><input type="checkbox" data-jeju-select-row><span class="jeju-visually-hidden">IC-2609126 선택</span></label></td>
+                <td data-label="관리번호"><button class="jeju-table__link" type="button" data-jeju-dialog-open="detail-panel" aria-label="IC-2609126 상세 보기">IC-2609126</button></td>
+                <td data-label="대상자">박○○</td>
+                <td data-label="지역">동부</td>
+                <td data-label="주요 서비스">방문건강</td>
+                <td data-label="상태"><span class="jeju-badge jeju-badge--warning">검토 필요</span></td>
+                <td data-label="담당">돌봄관리팀</td>
+                <td data-label="최근 처리일">2026-09-20</td>
+                <td class="num" data-label="연계 건수">2</td>
+              </tr>
+              <tr>
+                <td class="check" data-label="선택"><label class="jeju-choice"><input type="checkbox" data-jeju-select-row><span class="jeju-visually-hidden">IC-2609125 선택</span></label></td>
+                <td data-label="관리번호"><button class="jeju-table__link" type="button" data-jeju-dialog-open="detail-panel" aria-label="IC-2609125 상세 보기">IC-2609125</button></td>
+                <td data-label="대상자">최○○</td>
+                <td data-label="지역">남부</td>
+                <td data-label="주요 서비스">이동지원</td>
+                <td data-label="상태"><span class="jeju-badge jeju-badge--info">연계 중</span></td>
+                <td data-label="담당">복지지원팀</td>
+                <td data-label="최근 처리일">2026-09-19</td>
+                <td class="num" data-label="연계 건수">7</td>
+              </tr>
+              <tr>
+                <td class="check" data-label="선택"><label class="jeju-choice"><input type="checkbox" data-jeju-select-row><span class="jeju-visually-hidden">IC-2609124 선택</span></label></td>
+                <td data-label="관리번호"><button class="jeju-table__link" type="button" data-jeju-dialog-open="detail-panel" aria-label="IC-2609124 상세 보기">IC-2609124</button></td>
+                <td data-label="대상자">정○○</td>
+                <td data-label="지역">북부</td>
+                <td data-label="주요 서비스">식사지원</td>
+                <td data-label="상태"><span class="jeju-badge jeju-badge--neutral">접수</span></td>
+                <td data-label="담당">미배정</td>
+                <td data-label="최근 처리일">2026-09-18</td>
+                <td class="num" data-label="연계 건수">1</td>
+              </tr>
+              <tr>
+                <td class="check" data-label="선택"><label class="jeju-choice"><input type="checkbox" data-jeju-select-row><span class="jeju-visually-hidden">IC-2609123 선택</span></label></td>
+                <td data-label="관리번호"><button class="jeju-table__link" type="button" data-jeju-dialog-open="detail-panel" aria-label="IC-2609123 상세 보기">IC-2609123</button></td>
+                <td data-label="대상자">강○○</td>
+                <td data-label="지역">서부</td>
+                <td data-label="주요 서비스">안부확인</td>
+                <td data-label="상태"><span class="jeju-badge jeju-badge--danger">자료 보완</span></td>
+                <td data-label="담당">돌봄관리팀</td>
+                <td data-label="최근 처리일">2026-09-17</td>
+                <td class="num" data-label="연계 건수">3</td>
+              </tr>
+              <tr class="total">
+                <td class="check" data-label="선택" aria-hidden="true"></td>
+                <td colspan="7" data-label="합계">표시 중인 6건 합계</td>
+                <td class="num" data-label="연계 건수">28</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <nav class="jeju-pagination demo-section" aria-label="페이지">
+          <button type="button" aria-label="이전 페이지">
+            <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-chevron-left"></use></svg>
+          </button>
+          <a href="#" aria-current="page">1</a><a href="#">2</a><a href="#">3</a>
+          <button type="button" aria-label="다음 페이지">
+            <svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-chevron-right"></use></svg>
+          </button>
+        </nav>
+      </section>
+
+      <section class="demo-section" aria-labelledby="state-title">
+        <h2 class="demo-section-title" id="state-title">업무 상태 표현 원칙</h2>
+        <div class="jeju-alert jeju-alert--warning"><strong>검토 필요</strong><span>색만으로 구분하지 않고 항상 상태 문구를 함께 표시합니다. 정렬 상태도 aria-sort와 아이콘 모양으로 함께 전달합니다.</span></div>
+      </section>
+    </div>
+  </main>
+</div>
+<dialog class="jeju-modal jeju-modal--side" id="detail-panel" aria-labelledby="detail-panel-title">
+  <div class="jeju-modal__head">
+    <h2 id="detail-panel-title" data-detail-title>대상자 상세</h2>
+    <button class="jeju-btn jeju-btn--ghost jeju-btn--sm jeju-btn--icon" type="button" data-jeju-dialog-close aria-label="닫기"><svg class="jeju-icon" aria-hidden="true"><use href="../jeju-icons.svg#jeju-icon-close"></use></svg></button>
+  </div>
+  <div class="jeju-modal__body">
+    <dl class="jeju-detail-list">
+      <div><dt>관리번호</dt><dd data-field="관리번호"></dd></div>
+      <div><dt>대상자</dt><dd data-field="대상자"></dd></div>
+      <div><dt>지역</dt><dd data-field="지역"></dd></div>
+      <div><dt>주요 서비스</dt><dd data-field="주요 서비스"></dd></div>
+      <div><dt>상태</dt><dd data-field="상태"></dd></div>
+      <div><dt>담당</dt><dd data-field="담당"></dd></div>
+      <div><dt>최근 처리일</dt><dd data-field="최근 처리일"></dd></div>
+      <div><dt>연계 건수</dt><dd data-field="연계 건수"></dd></div>
+    </dl>
+  </div>
+  <div class="jeju-modal__foot">
+    <button class="jeju-btn jeju-btn--outline" type="button" data-jeju-dialog-close>닫기</button>
+    <button class="jeju-btn jeju-btn--primary" type="button" data-jeju-dialog-close>담당자 배정</button>
+  </div>
+</dialog>
+
+<script src="work-demo.js" defer></script>
+</body>
+</html>

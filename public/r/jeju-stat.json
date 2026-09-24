@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jeju-stat",
+  "type": "registry:block",
+  "title": "KPI",
+  "description": "4 → 2 → 1열 KPI 묶음.",
+  "registryDependencies": [
+    "@jeju/jeju-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/blocks/jeju-stat/jeju-stat.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// KPI 묶음. 4열 → 1024px 이하 2열 → 560px 이하 1열. 숫자는 tabular-nums로 자릿수를 맞춘다.\nfunction StatGrid({ className, ...props }: React.ComponentProps<\"section\">) {\n  return (\n    <section\n      data-slot=\"stat-grid\"\n      className={cn(\n        \"grid grid-cols-4 gap-3.5 max-[1024px]:grid-cols-2 max-[560px]:grid-cols-1\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction Stat({\n  label,\n  value,\n  meta,\n  className,\n  ...props\n}: Omit<React.ComponentProps<\"article\">, \"children\"> & {\n  label: React.ReactNode\n  value: React.ReactNode\n  meta?: React.ReactNode\n}) {\n  return (\n    <article\n      data-slot=\"stat\"\n      className={cn(\"min-w-0 rounded-xl border border-border bg-card p-4.5\", className)}\n      {...props}\n    >\n      <div className=\"text-(length:--jeju-text-sm) font-bold text-muted-foreground\">{label}</div>\n      <div className=\"mt-1.5 text-(length:--jeju-kpi-size) leading-[1.1] font-extrabold text-(--jeju-text-strong) tabular-nums\">\n        {value}\n      </div>\n      {meta ? (\n        <div className=\"mt-2 text-(length:--jeju-text-xs) text-(--jeju-text-subtle)\">{meta}</div>\n      ) : null}\n    </article>\n  )\n}\n\nexport { Stat, StatGrid }\n"
+    }
+  ]
+}

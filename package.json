@@ -1,0 +1,18 @@
+{
+  "name": "Jejustyle_UIUX",
+  "version": "0.6.0",
+  "private": true,
+  "description": "Jeju Style UI·UX 디자인 가이드 — 제주특별자치도 공통 디자인 시스템(표준안)",
+  "scripts": {
+    "check": "python design/check_design.py --canon",
+    "check:examples": "python design/check_design.py --gate design/examples",
+    "check:all": "npm run check && npm run check:examples",
+    "registry:build": "python tools/build_registry.py",
+    "registry:check": "python tools/build_registry.py --check",
+    "registry:serve": "python -m http.server 8765"
+    ,"standalone:build": "python tools/build_standalone.py",
+    "standalone:check": "python tools/build_standalone.py --check",
+    "tokens:build": "python tools/build_token_docs.py",
+    "tokens:check": "python tools/build_token_docs.py --check"
+  }
+}

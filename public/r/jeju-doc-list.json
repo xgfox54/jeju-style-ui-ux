@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jeju-doc-list",
+  "type": "registry:block",
+  "title": "서식 내려받기",
+  "description": "문서명 · 형식 · 크기 · 개정일과 내려받기 버튼. 버튼 이름에 문서명과 형식이 들어간다.",
+  "registryDependencies": [
+    "@jeju/badge",
+    "@jeju/button",
+    "@jeju/jeju-icons",
+    "@jeju/jeju-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/blocks/jeju-doc-list/jeju-doc-list.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Badge } from \"@/components/ui/badge\"\nimport { Button } from \"@/components/ui/button\"\nimport { DownloadIcon, FileIcon } from \"@/components/ui/jeju-icons\"\n\n// 서식 내려받기(Tier 1 .jeju-doc-list). 버튼 이름은 \"문서명 + 내려받기 + (형식, 크기)\"로 읽혀\n// 여러 서식이 있어도 어떤 파일인지 구분된다. 보이는 글자 \"내려받기\"가 이름 안에 들어 있다(WCAG 2.5.3).\ntype DocItem = {\n  title: string\n  format: string\n  size: string\n  updated?: string\n  href: string\n}\n\nfunction DocList({ docs, className, ...props }: React.ComponentProps<\"ul\"> & { docs: DocItem[] }) {\n  return (\n    <ul data-slot=\"doc-list\" className={cn(\"m-0 grid list-none gap-2 p-0\", className)} {...props}>\n      {docs.map((doc) => (\n        <li\n          key={doc.title}\n          className=\"flex min-w-0 items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 max-[560px]:flex-wrap\"\n        >\n          <FileIcon className=\"text-muted-foreground\" />\n          <div className=\"grid min-w-0 flex-1 gap-0.5\">\n            <span className=\"font-extrabold wrap-anywhere text-(--jeju-text-strong)\">{doc.title}</span>\n            <span className=\"flex flex-wrap items-center gap-1.5 text-(length:--jeju-text-sm) text-(--jeju-text-subtle) tabular-nums\">\n              <Badge variant=\"info\">{doc.format}</Badge>\n              {doc.size}\n              {doc.updated ? \" · \" + doc.updated : null}\n            </span>\n          </div>\n          <Button variant=\"outline\" size=\"sm\" asChild className=\"max-[560px]:w-full\">\n            <a href={doc.href} download aria-label={doc.title + \" 내려받기 (\" + doc.format + \", \" + doc.size + \")\"}>\n              <DownloadIcon />\n              내려받기\n            </a>\n          </Button>\n        </li>\n      ))}\n    </ul>\n  )\n}\n\nexport { DocList, type DocItem }\n"
+    }
+  ]
+}

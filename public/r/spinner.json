@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "스피너",
+  "description": "role=status 로딩 표시.",
+  "files": [
+    {
+      "path": "registry/jeju/ui/spinner.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// Tier 1 .jeju-spinner와 같은 테두리형 회전 표시. 동작 감소 설정이면 토큰 파일이 회전을 멈춘다.\nfunction Spinner({\n  className,\n  label = \"불러오는 중\",\n  ...props\n}: React.ComponentProps<\"span\"> & { label?: string }) {\n  return (\n    <span\n      data-slot=\"spinner\"\n      role=\"status\"\n      aria-label={label}\n      className={cn(\n        \"inline-block size-(--jeju-icon) shrink-0 animate-spin rounded-full border-2 border-border border-t-primary\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Spinner }\n"
+    }
+  ]
+}

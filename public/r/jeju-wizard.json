@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jeju-wizard",
+  "type": "registry:block",
+  "title": "신청 마법사",
+  "description": "단계 표시 + 진행률 + 이전/다음. 단계가 바뀌면 새 단계로 포커스를 옮긴다.",
+  "registryDependencies": [
+    "@jeju/button",
+    "@jeju/jeju-icons",
+    "@jeju/jeju-steps",
+    "@jeju/jeju-tokens",
+    "@jeju/progress"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/blocks/jeju-wizard/jeju-wizard.tsx",
+      "type": "registry:component",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { Button } from \"@/components/ui/button\"\nimport { Progress } from \"@/components/ui/progress\"\nimport { ArrowLeftIcon, ArrowRightIcon } from \"@/components/ui/jeju-icons\"\nimport { Steps } from \"@/components/jeju-steps\"\n\n// 신청 절차 마법사. 이전/다음 버튼으로 이동하고 양 끝에서 비활성된다.\n// 단계가 바뀌면 새 단계 영역으로 포커스를 옮겨 스크린리더 사용자가 바뀐 내용을 바로 듣게 한다.\ntype WizardStep = {\n  label: string\n  content: React.ReactNode\n}\n\nfunction Wizard({\n  steps,\n  initialStep = 0,\n  onStepChange,\n  onComplete,\n  completeLabel = \"신청하기\",\n  progressLabel = \"진행률\",\n  className,\n}: {\n  steps: WizardStep[]\n  initialStep?: number\n  onStepChange?: (index: number) => void\n  onComplete?: () => void\n  completeLabel?: string\n  progressLabel?: string\n  className?: string\n}) {\n  const [index, setIndex] = React.useState(initialStep)\n  const panelRef = React.useRef<HTMLDivElement>(null)\n  const moved = React.useRef(false)\n  const last = steps.length - 1\n  const percent = Math.round(((index + 1) / steps.length) * 100)\n\n  React.useEffect(() => {\n    if (!moved.current) return\n    panelRef.current?.focus()\n  }, [index])\n\n  const go = (target: number) => {\n    if (target < 0 || target > last) return\n    moved.current = true\n    setIndex(target)\n    onStepChange?.(target)\n  }\n\n  return (\n    <div\n      data-slot=\"wizard\"\n      className={cn(\n        \"grid min-w-0 gap-6 rounded-xl border border-border bg-card p-(--jeju-card-pad)\",\n        className\n      )}\n    >\n      <Steps steps={steps} current={index} aria-label=\"진행 단계\" />\n\n      <div className=\"grid gap-1.5\">\n        <div className=\"flex flex-wrap justify-between gap-3 text-(length:--jeju-text-sm) text-muted-foreground\">\n          <span aria-live=\"polite\">\n            전체 {steps.length}단계 중 {index + 1}단계\n          </span>\n          <strong className=\"text-(--jeju-text-strong) tabular-nums\">{percent}%</strong>\n        </div>\n        <Progress value={percent} aria-label={progressLabel} />\n      </div>\n\n      <div\n        ref={panelRef}\n        tabIndex={-1}\n        role=\"group\"\n        aria-label={index + 1 + \"단계 \" + steps[index]?.label}\n        className=\"min-w-0 rounded-lg outline-none focus-visible:shadow-(--jeju-focus-ring)\"\n      >\n        {steps[index]?.content}\n      </div>\n\n      <div className=\"flex flex-wrap items-center justify-between gap-2\">\n        <Button variant=\"outline\" size=\"lg\" disabled={index === 0} onClick={() => go(index - 1)}>\n          <ArrowLeftIcon />\n          이전 단계\n        </Button>\n        {index === last && onComplete ? (\n          <Button size=\"lg\" onClick={onComplete}>\n            {completeLabel}\n          </Button>\n        ) : (\n          <Button size=\"lg\" disabled={index === last} onClick={() => go(index + 1)}>\n            {index === last - 1 ? \"마지막 단계로\" : \"다음 단계\"}\n            <ArrowRightIcon />\n          </Button>\n        )}\n      </div>\n    </div>\n  )\n}\n\nexport { Wizard, type WizardStep }\n"
+    }
+  ]
+}

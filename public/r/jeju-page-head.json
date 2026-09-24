@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jeju-page-head",
+  "type": "registry:block",
+  "title": "페이지 머리",
+  "description": "제목(h1) · 설명 · 주요 액션.",
+  "registryDependencies": [
+    "@jeju/jeju-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/blocks/jeju-page-head/jeju-page-head.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n// 페이지 첫 줄: 제목(h1) · 설명 · 주요 액션. 560px 이하에서는 액션이 제목 아래로 내려가 가로를 채운다.\nfunction PageHead({\n  title,\n  description,\n  actions,\n  level = 1,\n  className,\n  ...props\n}: Omit<React.ComponentProps<\"div\">, \"title\"> & {\n  title: React.ReactNode\n  description?: React.ReactNode\n  actions?: React.ReactNode\n  level?: 1 | 2\n}) {\n  const Heading = level === 1 ? \"h1\" : \"h2\"\n\n  return (\n    <div\n      data-slot=\"page-head\"\n      className={cn(\n        \"mb-5 flex items-start justify-between gap-5 max-[560px]:grid\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"min-w-0\">\n        <Heading\n          className={cn(\n            \"m-0 leading-(--jeju-leading-tight) font-bold text-(--jeju-text-strong)\",\n            level === 1 ? \"text-(length:--jeju-h1-size)\" : \"text-(length:--jeju-h2-size)\"\n          )}\n        >\n          {title}\n        </Heading>\n        {description ? (\n          <p className=\"mt-2 mb-0 text-muted-foreground\">{description}</p>\n        ) : null}\n      </div>\n      {actions ? (\n        <div className=\"flex flex-wrap items-center gap-2 max-[560px]:w-full max-[560px]:*:flex-auto\">\n          {actions}\n        </div>\n      ) : null}\n    </div>\n  )\n}\n\nexport { PageHead }\n"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "type": "registry:ui",
+  "title": "스위치",
+  "description": "켜짐/꺼짐 문구를 옆에 함께 둔다.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/ui/switch.tsx",
+      "type": "registry:ui",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { Switch as SwitchPrimitive } from \"radix-ui\"\n\nimport { cn } from \"@/lib/utils\"\n\n// 켜짐/꺼짐은 색 외에 문구로도 보여 준다. 스위치 옆에 상태 문구를 함께 둔다.\nfunction Switch({\n  className,\n  ...props\n}: React.ComponentProps<typeof SwitchPrimitive.Root>) {\n  return (\n    <SwitchPrimitive.Root\n      data-slot=\"switch\"\n      className={cn(\n        \"peer group/switch relative inline-flex h-(--jeju-switch-h) w-(--jeju-switch-w) shrink-0 items-center rounded-full border border-input bg-muted px-[3px] transition-colors outline-none after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:border-ring focus-visible:shadow-(--jeju-focus-ring) aria-invalid:border-destructive data-checked:border-primary data-checked:bg-primary data-disabled:cursor-not-allowed data-disabled:border-(--jeju-disabled-border) data-disabled:bg-(--jeju-disabled-bg) forced-colors:forced-color-adjust-none forced-colors:border-[ButtonText] forced-colors:bg-[Canvas] forced-colors:data-checked:border-[Highlight] forced-colors:data-checked:bg-[Highlight]\",\n        className\n      )}\n      {...props}\n    >\n      <SwitchPrimitive.Thumb\n        data-slot=\"switch-thumb\"\n        className=\"pointer-events-none block size-[calc(var(--jeju-switch-h)-10px)] rounded-full bg-muted-foreground transition-transform data-checked:translate-x-[calc(var(--jeju-switch-w)-var(--jeju-switch-h)+2px)] data-checked:bg-card data-unchecked:translate-x-0 forced-colors:forced-color-adjust-none forced-colors:bg-[ButtonText] forced-colors:data-checked:bg-[HighlightText]\"\n      />\n    </SwitchPrimitive.Root>\n  )\n}\n\nexport { Switch }\n"
+    }
+  ]
+}

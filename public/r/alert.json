@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "title": "알림",
+  "description": "info/success/warning/danger 역할색. 제목으로 상태를 문구로도 밝힌다.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/ui/alert.tsx",
+      "type": "registry:ui",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\n// info/success/warning/danger는 Tier 1 .jeju-alert--*와 같은 역할색이다. 제목(AlertTitle)으로 상태를 문구로도 밝힌다.\n// 정적인 안내문에는 role=\"note\"를 넘겨 스크린리더가 불필요하게 끼어들지 않게 한다.\nconst alertVariants = cva(\n  \"group/alert relative grid w-full gap-0.5 rounded-lg border px-4 py-3.5 text-left text-(length:--jeju-text-base) has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[>svg]:grid-cols-[auto_1fr] has-[>svg]:gap-x-2.5 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current\",\n  {\n    variants: {\n      variant: {\n        default: \"border-border bg-card text-card-foreground\",\n        info: \"border-(--jeju-blue-light-strong) bg-(--jeju-info-tint) text-(--jeju-info) *:data-[slot=alert-description]:text-current\",\n        success:\n          \"border-(--jeju-green-light-strong) bg-(--jeju-success-tint) text-(--jeju-success) *:data-[slot=alert-description]:text-current\",\n        warning:\n          \"border-(--jeju-orange-light-strong) bg-(--jeju-warning-tint) text-(--jeju-warning) *:data-[slot=alert-description]:text-current\",\n        danger:\n          \"border-border bg-(--jeju-danger-tint) text-(--jeju-danger) *:data-[slot=alert-description]:text-current\",\n        destructive:\n          \"border-border bg-(--jeju-danger-tint) text-(--jeju-danger) *:data-[slot=alert-description]:text-current\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n)\n\nfunction Alert({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof alertVariants>) {\n  return (\n    <div\n      data-slot=\"alert\"\n      role=\"alert\"\n      className={cn(alertVariants({ variant }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\n        \"font-bold group-has-[>svg]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-description\"\n      className={cn(\n        \"text-(length:--jeju-text-base) text-pretty text-(--jeju-text-body) group-has-[>svg]/alert:col-start-2 [&_a]:underline [&_a]:underline-offset-3 [&_p:not(:last-child)]:mb-4\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction AlertAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-action\"\n      className={cn(\"absolute top-2.5 right-2.5\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Alert, AlertTitle, AlertDescription, AlertAction }\n"
+    }
+  ]
+}

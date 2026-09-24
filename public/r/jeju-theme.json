@@ -1,0 +1,106 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jeju-theme",
+  "type": "registry:theme",
+  "title": "제주 테마 — shadcn 변수를 --jeju-* 토큰으로 연결",
+  "description": "--primary, --background, --radius 등 shadcn 변수를 모두 var(--jeju-*)로 돌린다. hex 값과 다크 팔레트는 없다.",
+  "dependencies": [
+    "shadcn",
+    "tw-animate-css"
+  ],
+  "registryDependencies": [
+    "@jeju/jeju-tokens"
+  ],
+  "cssVars": {
+    "theme": {
+      "font-sans": "var(--jeju-font)",
+      "font-heading": "var(--jeju-font)",
+      "font-mono": "var(--jeju-font-mono)",
+      "radius-sm": "var(--jeju-radius-sm)",
+      "radius-md": "var(--jeju-radius-sm)",
+      "radius-lg": "var(--jeju-radius)",
+      "radius-xl": "var(--jeju-radius-lg)",
+      "radius-2xl": "var(--jeju-radius-lg)",
+      "radius-4xl": "var(--jeju-radius-pill)"
+    },
+    "light": {
+      "background": "var(--jeju-bg)",
+      "foreground": "var(--jeju-text)",
+      "card": "var(--jeju-surface)",
+      "card-foreground": "var(--jeju-text)",
+      "popover": "var(--jeju-surface)",
+      "popover-foreground": "var(--jeju-text)",
+      "primary": "var(--jeju-primary)",
+      "primary-foreground": "var(--jeju-on-fill)",
+      "secondary": "var(--jeju-surface-inset)",
+      "secondary-foreground": "var(--jeju-text)",
+      "muted": "var(--jeju-control-bg)",
+      "muted-foreground": "var(--jeju-text-muted)",
+      "accent": "var(--jeju-control-bg)",
+      "accent-foreground": "var(--jeju-text-strong)",
+      "destructive": "var(--jeju-danger)",
+      "destructive-foreground": "var(--jeju-on-fill)",
+      "border": "var(--jeju-border)",
+      "input": "var(--jeju-border-strong)",
+      "ring": "var(--jeju-primary)",
+      "radius": "var(--jeju-radius)",
+      "chart-1": "var(--jeju-primary)",
+      "chart-2": "var(--jeju-secondary-strong)",
+      "chart-3": "var(--jeju-accent-strong)",
+      "chart-4": "var(--jeju-blue-deep)",
+      "chart-5": "var(--jeju-text-subtle)",
+      "sidebar": "var(--jeju-surface)",
+      "sidebar-foreground": "var(--jeju-text)",
+      "sidebar-primary": "var(--jeju-primary)",
+      "sidebar-primary-foreground": "var(--jeju-on-fill)",
+      "sidebar-accent": "var(--jeju-primary-tint)",
+      "sidebar-accent-foreground": "var(--jeju-primary)",
+      "sidebar-border": "var(--jeju-shell-border)",
+      "sidebar-ring": "var(--jeju-primary)"
+    }
+  },
+  "css": {
+    "@layer base": {
+      "body": {
+        "font-family": "var(--jeju-font)",
+        "font-size": "var(--jeju-text-base)",
+        "line-height": "var(--jeju-leading-normal)",
+        "background-color": "var(--jeju-bg)",
+        "color": "var(--jeju-text)",
+        "word-break": "keep-all",
+        "overflow-wrap": "break-word"
+      },
+      "a": {
+        "color": "var(--jeju-primary)",
+        "text-underline-offset": "2px"
+      }
+    },
+    "@media print": {
+      "body": {
+        "background-color": "var(--jeju-surface)"
+      },
+      "body:has(> [data-slot=\"sheet-content\"][data-side=\"right\"][data-state=\"open\"]) > :not([data-slot=\"sheet-content\"])": {
+        "display": "none"
+      },
+      "[data-slot=\"sheet-content\"][data-side=\"right\"][data-state=\"open\"]": {
+        "position": "absolute",
+        "inset": "0 0 auto 0",
+        "width": "auto",
+        "height": "auto",
+        "max-width": "none",
+        "overflow": "visible",
+        "border": "0",
+        "box-shadow": "none",
+        "animation": "none",
+        "transition": "none"
+      },
+      "[data-slot=\"sheet-content\"] > [data-slot=\"sheet-close\"], [data-slot=\"sheet-content\"] [data-slot=\"sheet-footer\"]": {
+        "display": "none"
+      },
+      ":focus-visible": {
+        "box-shadow": "none",
+        "outline": "0"
+      }
+    }
+  }
+}

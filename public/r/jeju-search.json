@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jeju-search",
+  "type": "registry:block",
+  "title": "검색 입력",
+  "description": "돋보기 아이콘이 붙은 검색 입력.",
+  "registryDependencies": [
+    "@jeju/jeju-icons",
+    "@jeju/jeju-tokens"
+  ],
+  "files": [
+    {
+      "path": "registry/jeju/blocks/jeju-search/jeju-search.tsx",
+      "type": "registry:component",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\nimport { SearchIcon } from \"@/components/ui/jeju-icons\"\n\n// 돋보기 아이콘이 붙은 검색 입력(Tier 1 .jeju-search). 라벨은 반드시 둔다.\n// hideLabel={false}면 라벨을 입력 위에 보이게 둔다(대민 서비스 검색처럼 질문형 라벨이 필요할 때).\nfunction SearchField({\n  id,\n  label,\n  hideLabel = true,\n  className,\n  ...props\n}: Omit<React.ComponentProps<\"input\">, \"type\"> & {\n  id: string\n  label: string\n  hideLabel?: boolean\n}) {\n  const box = (\n    <div\n      data-slot=\"search-field\"\n      className={cn(\n        \"flex min-h-(--jeju-search-h) min-w-0 items-center gap-2 rounded-lg border border-input bg-card px-2.5 has-[input:focus-visible]:border-ring has-[input:focus-visible]:shadow-(--jeju-focus-ring)\",\n        hideLabel && className\n      )}\n    >\n      <SearchIcon className=\"text-muted-foreground\" />\n      {hideLabel ? (\n        <label htmlFor={id} className=\"sr-only\">\n          {label}\n        </label>\n      ) : null}\n      <input\n        id={id}\n        type=\"search\"\n        className=\"h-full min-h-[calc(var(--jeju-search-h)-2px)] w-full min-w-0 border-0 bg-transparent text-(length:--jeju-control-font) text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-transparent focus-visible:shadow-none\"\n        {...props}\n      />\n    </div>\n  )\n\n  if (hideLabel) return box\n\n  return (\n    <div className={cn(\"grid min-w-0 gap-1.5\", className)}>\n      <label htmlFor={id} className=\"text-(length:--jeju-label-font) font-bold text-(--jeju-text-body)\">\n        {label}\n      </label>\n      {box}\n    </div>\n  )\n}\n\nexport { SearchField }\n"
+    }
+  ]
+}
